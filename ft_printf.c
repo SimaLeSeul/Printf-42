@@ -24,6 +24,8 @@ int handle_conversion(char type, va_list *args)
 
 int ft_printf(const char *format, ...)
 {
+    if (!format)
+        return (0);
     va_list args;
     int count;
     int i;
@@ -45,7 +47,6 @@ int ft_printf(const char *format, ...)
     va_end(args);
     return (count);
 }
-
 /*int main()
 {
     ft_printf("Hello\n");
@@ -73,4 +74,9 @@ int ft_printf(const char *format, ...)
     ft_printf("%s\n", NULL);
     ft_printf("%%\n");
     ft_printf("%s %d %x\n", "test", 42, 255);
+
+    // NULL
+    printf(NULL);
+    ft_printf(NULL);
+    
 }*/
