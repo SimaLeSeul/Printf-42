@@ -21,7 +21,8 @@ int	ft_putstr(char *str)
 		str = "(null)";
 	while (str[i])
 	{
-		write(1, &str[i], 1);
+		if (ft_putchar(str[i]) == -1)
+			return (-1);
 		i++;
 	}
 	return (i);

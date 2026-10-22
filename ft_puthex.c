@@ -14,13 +14,14 @@
 
 int	ft_puthex(unsigned int n)
 {
-	int		i;
+	int		count;
 	char	*hex;
 
-	i = 0;
+	count = 0;
 	hex = "0123456789abcdef";
 	if (n > 15)
-		i += ft_puthex(n / 16);
-	i += ft_putchar(hex[n % 16]);
-	return (i);
+		count = ft_puthex(n / 16);
+	if (count == -1 || ft_putchar(hex[n % 16]) == -1)
+		return (-1);
+	return (count + 1);
 }

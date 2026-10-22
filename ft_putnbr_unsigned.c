@@ -14,13 +14,12 @@
 
 int	ft_putnbr_unsigned(unsigned int n)
 {
-	unsigned long	nb;
-	int				i;
+	int	count;
 
-	nb = n;
-	i = 0;
-	if (nb > 9)
-		i += ft_putnbr(nb / 10);
-	i += ft_putchar((nb % 10) + '0');
-	return (i);
+	count = 0;
+	if (n > 9)
+		count = ft_putnbr_unsigned(n / 10);
+	if (count == -1 || ft_putchar((n % 10) + '0') == -1)
+		return (-1);
+	return (count + 1);
 }

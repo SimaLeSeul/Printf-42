@@ -20,15 +20,22 @@ static int	ft_putptr_hex(unsigned long addr)
 	count = 0;
 	hex = "0123456789abcdef";
 	if (addr > 15)
-		count += ft_putptr_hex(addr / 16);
-	count += ft_putchar(hex[addr % 16]);
-	return (count);
+		count = ft_putptr_hex(addr / 16);
+	if (count == -1 || ft_putchar(hex[addr % 16]) == -1)
+		return (-1);
+	return (count + 1);
 }
 
 int	ft_putptr(void *ptr)
 {
+	int	count;
+
 	if (!ptr)
-		return (write(1, "(nil)", 5));
-	write(1, "0x", 2);
-	return (ft_putptr_hex((unsigned long)ptr) + 2);
+		return (ft_putstr("(nil)"));
+	if (write(1, "0x", 2) != 2)
+		return (-1);
+	count = ft_putptr_hex((unsigned long)ptr);
+	if (count == -1)
+		return (-1);
+	return (count + 2);
 }

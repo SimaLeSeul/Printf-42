@@ -31,32 +31,44 @@ static int	handle_conversion(char type, va_list *ap)
 	else if (type == 'X')
 		return (ft_puthexu(va_arg(*ap, unsigned int)));
 	else if (type == '%')
-		return (write(1, "%", 1));
+		return (ft_putchar('%'));
 	return (1);
+}
+
+static int	print_format(const char *format, va_list *ap)
+{
+	int	count;
+	int	ret;
+
+	count = 0;
+	while (*format)
+	{
+		if (*format == '%')
+		{
+			format++;
+			if (!*format)
+				return (-1);
+			ret = handle_conversion(*format, ap);
+		}
+		else
+			ret = ft_putchar(*format);
+		if (ret == -1)
+			return (-1);
+		count += ret;
+		format++;
+	}
+	return (count);
 }
 
 int	ft_printf(const char *format, ...)
 {
-	int		i;
 	int		count;
 	va_list	ap;
 
-	i = 0;
-	count = 0;
 	if (!format)
 		return (-1);
 	va_start(ap, format);
-	while (format[i])
-	{
-		if (format[i] == '%')
-		{
-			i++;
-			count += handle_conversion(format[i], &ap);
-		}
-		else
-			count += ft_putchar(format[i]);
-		i++;
-	}
+	count = print_format(format, &ap);
 	va_end(ap);
 	return (count);
 }

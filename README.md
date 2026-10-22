@@ -95,8 +95,9 @@ and a null pointer argument prints `(nil)`. The latter differs from macOS
 `printf`, which prints `0x0` for a null pointer.
 
 Use the supported conversions with arguments of the appropriate types.
-Invalid format strings and unsupported conversions are outside the supported
-interface. Write failures are not consistently propagated by the current helpers.
+A trailing `%` returns `-1`. Other invalid format strings and unsupported
+conversions are outside the supported interface. Write failures return `-1`;
+characters written before the error remain on standard output.
 
 ## Algorithm and Data Structures
 
