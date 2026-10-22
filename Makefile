@@ -1,24 +1,46 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: mibaboul <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2026/10/10 23:09:39 by mibaboul          #+#    #+#              #
+#    Updated: 2026/10/10 23:09:40 by mibaboul         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = libftprintf.a
 
-SRCS = ft_printf.c ft_putchar.c ft_putstr.c \
-       ft_putnbr.c ft_putnbr_unsigned.c \
-       ft_puthex.c ft_puthex_upper.c ft_putptr.c
+SRC = ft_putchar.c \
+	ft_putstr.c \
+	ft_putnbr.c \
+	ft_puthex.c \
+	ft_puthexu.c \
+	ft_putptr.c \
+	ft_putnbr_unsigned.c \
+	ft_printf.c
 
-OBJS = $(SRCS:.c=.o)
+OBJ = $(SRC:.c=.o)
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
+RM = rm -f
+
 all: $(NAME)
 
-$(NAME): $(OBJS)
-    ar rcs $(NAME) $(OBJS)
+$(NAME): $(OBJ)
+	ar rcs $(NAME) $(OBJ)
+
+%.o: %.c ft_printf.h
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-    rm -f $(OBJS)
+	$(RM) $(OBJ)
 
 fclean: clean
-    rm -f $(NAME)
+	$(RM) $(NAME)
 
 re: fclean all
 

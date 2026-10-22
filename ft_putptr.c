@@ -1,15 +1,34 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putptr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mibaboul <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/10/10 22:04:26 by mibaboul          #+#    #+#             */
+/*   Updated: 2026/10/10 23:13:13 by mibaboul         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-int ft_putptr(void *ptr)
+static int	ft_putptr_hex(unsigned long addr)
 {
-    int count = 0;
-    unsigned long addr = (unsigned long)ptr;
-    
-    if (ptr == NULL)
-        return (ft_putstr("(nil)"));
-    
-    count += ft_putstr("0x");
-    count += ft_puthex(addr);
-    
-    return (count);
+	int		count;
+	char	*hex;
+
+	count = 0;
+	hex = "0123456789abcdef";
+	if (addr > 15)
+		count += ft_putptr_hex(addr / 16);
+	count += ft_putchar(hex[addr % 16]);
+	return (count);
+}
+
+int	ft_putptr(void *ptr)
+{
+	if (!ptr)
+		return (write(1, "(nil)", 5));
+	write(1, "0x", 2);
+	return (ft_putptr_hex((unsigned long)ptr) + 2);
 }

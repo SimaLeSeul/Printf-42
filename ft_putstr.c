@@ -1,16 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mibaboul <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/10/10 22:02:35 by mibaboul          #+#    #+#             */
+/*   Updated: 2026/10/10 22:26:20 by mibaboul         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-int ft_putstr(const char *format)
+int	ft_putstr(char *str)
 {
-    int count;
+	size_t	i;
 
-    count = 0;
-    if (!format)
-        format = "(null)";
-    while (format[count])
-    {
-        ft_putchar(format[count]);
-        count++;
-    }
-    return (count);
+	i = 0;
+	if (!str)
+		str = "(null)";
+	while (str[i])
+	{
+		write(1, &str[i], 1);
+		i++;
+	}
+	return (i);
 }
