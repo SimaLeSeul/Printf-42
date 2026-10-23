@@ -157,4 +157,4 @@ heap allocations.
 
 ### AI Usage
 
-- Artificial intelligence: used to draft and organize this README. It was used for the documentation task only, specifically to summarize the project, explain the build instructions, and the source file names. AI was not used to write or modify the library source code.
+- Artificial intelligence: used to draft and organize this README. It was used for the documentation task only, specifically to summarize the project, explain the build instructions, and the source file names. AI was not used to write or modify the source code.
