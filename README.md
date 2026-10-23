@@ -103,7 +103,7 @@ characters written before the error remain on standard output.
 
 ### Format parsing and variadic arguments
 
-`ft_printf` scans the format string from left to right using an integer index.
+`ft_printf` scans the format string from left to right by advancing a pointer.
 Ordinary characters are written directly. When the parser encounters `%`, it
 passes the next character to `handle_conversion`, which selects the appropriate
 output helper.
@@ -147,8 +147,6 @@ heap allocations.
 
 ## Resources
 
-- [Project subject](ft_printf.pdf), version 12.1: mandatory conversions,
-  submission requirements, and README requirements.
 - `man 3 printf`: formatted output and return-value conventions.
 - `man 3 stdarg`: variadic argument handling with `va_list` and its macros.
 - `man 2 write`: writing bytes to a file descriptor.
