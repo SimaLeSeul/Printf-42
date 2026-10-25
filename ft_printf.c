@@ -32,6 +32,8 @@ static int	handle_conversion(char type, va_list *ap)
 		return (ft_puthexu(va_arg(*ap, unsigned int)));
 	else if (type == '%')
 		return (ft_putchar('%'));
+	else
+		return (ft_putchar(type));
 	return (1);
 }
 
